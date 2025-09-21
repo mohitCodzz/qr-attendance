@@ -8,9 +8,15 @@ export default function Landing() {
       <p className="text-lg text-gray-600 mb-6">Attendance Made Easy with TrackIn</p>
       
       
-      <div className="background-image">
-        <img src="" alt="" />
-      </div>
+  <div className="bg-white rounded-lg shadow-md p-6 w-full max-w-md flex items-center justify-center">
+    <img
+      src="/images/landing.png"
+      alt="landing"
+      className="object-contain w-full h-48"
+    />
+  </div>
+
+
       <div className="space-x-4">
         <Link
           to="/student"
