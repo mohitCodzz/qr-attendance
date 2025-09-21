@@ -1,27 +1,24 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
+import Landing from "./pages/Landing";
+import StudentLogin from "./pages/StudentLogin";
+import TeacherLogin from "./pages/TeacherLogin";
 
 function App() {
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
-        {/* Top Navigation */}
         <Navbar />
-
-        {/* Page Content */}
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/attendance" element={<Attendance />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/student" element={<StudentLogin />} />
+            <Route path="/teacher" element={<TeacherLogin />} />
           </Routes>
         </main>
-
-        {/* Footer */}
         <Footer />
       </div>
     </Router>
