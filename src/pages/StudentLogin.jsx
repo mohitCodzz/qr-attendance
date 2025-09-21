@@ -1,14 +1,22 @@
 // src/pages/StudentLogin.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QRScanner from "../components/QRScanner";
 import { markAttendance, getAttendanceList } from "../utils/api";
 
 export default function StudentLogin() {
-  const [attendanceList, setAttendanceList] = useState(getAttendanceList());
+  const [attendanceList, setAttendanceList] = useState([]);
+
+  // Load attendance list on component mount
+  useEffect(() => {
+    setAttendanceList(getAttendanceList());
+  }, []);
 
   const handleScan = (studentId) => {
-    markAttendance(studentId);
-    setAttendanceList(getAttendanceList());
+    if (!studentId) return; // safety check
+
+    markAttendance(studentId); // mark attendance in backend / storage
+    const updatedList = getAttendanceList(); // get updated list
+    setAttendanceList(updatedList); // update state
     alert(`Attendance marked for ID: ${studentId}`);
   };
 
