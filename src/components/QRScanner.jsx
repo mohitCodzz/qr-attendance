@@ -1,25 +1,31 @@
 // src/components/QRScanner.jsx
-import { useState } from "react";
-import { QrReader } from "react-qr-reader";
+import { useEffect, useRef } from "react";
+import { Html5Qrcode } from "html5-qrcode";
 
 export default function QRScanner({ onScan }) {
-  const [error, setError] = useState(null);
+  const qrRef = useRef(null);
 
-  return (
-    <div className="flex flex-col items-center">
-      <QrReader
-        onResult={(result, err) => {
-          if (!!result) {
-            onScan(result?.text);
-          }
-          if (!!err) {
-            setError(err?.message || "Error scanning QR");
-          }
-        }}
-        constraints={{ facingMode: "environment" }}
-        className="w-80 h-80"
-      />
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-    </div>
-  );
+  useEffect(() => {
+    if (!qrRef.current) return;
+
+    const qrCodeScanner = new Html5Qrcode(qrRef.current.id);
+
+    qrCodeScanner.start(
+      { facingMode: "environment" },
+      { fps: 10, qrbox: 250 },
+      (decodedText) => {
+        onScan(decodedText);
+        qrCodeScanner.stop();
+      },
+      (errorMessage) => {
+        console.warn("QR scan error:", errorMessage);
+      }
+    ).catch(console.error);
+
+    return () => {
+      qrCodeScanner.stop().catch(() => {});
+    };
+  }, [onScan]);
+
+  return <div id="qr-reader" ref={qrRef} className="w-full max-w-md mx-auto"></div>;
 }
