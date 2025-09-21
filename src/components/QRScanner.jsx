@@ -1,26 +1,25 @@
-// src/components/QRScanner.jsx
-import { useState } from "react";
-import { QrReader } from "react-qr-reader";
+import { useEffect } from "react";
+import { Html5Qrcode } from "html5-qrcode";
 
 export default function QRScanner({ onScan }) {
-  const [error, setError] = useState(null);
+  useEffect(() => {
+    const qrCodeRegionId = "qr-reader";
+    const html5QrCode = new Html5Qrcode(qrCodeRegionId);
 
-  return (
-    <div className="w-full max-w-md h-64 bg-gray-200 flex flex-col items-center justify-center rounded p-2">
-      <QrReader
-        constraints={{ facingMode: "environment" }}
-        scanDelay={500}
-        onResult={(result, err) => {
-          if (!!result) {
-            onScan(result.text); // Send scanned ID to parent
-          }
-          if (!!err) {
-            setError(err?.message);
-          }
-        }}
-        style={{ width: "100%", height: "100%" }}
-      />
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-    </div>
-  );
+    html5QrCode.start(
+      { facingMode: "environment" },
+      { fps: 10 },
+      (decodedText) => {
+        onScan(decodedText);
+        html5QrCode.stop();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    return () => html5QrCode.stop();
+  }, [onScan]);
+
+  return <div id="qr-reader" style={{ width: "100%", height: "300px" }}></div>;
 }
