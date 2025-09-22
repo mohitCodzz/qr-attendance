@@ -28,22 +28,19 @@ const SelectInput = ({ value, onChange, options, placeholder }) => {
 };
 
 const StudentDashboard = () => {
-  // -------------------
+
   // Form states
-  // -------------------
   const [department, setDepartment] = useState(""); // Selected department
   const [year, setYear] = useState("");             // Selected year
   const [section, setSection] = useState("");       // Selected section
 
-  // -------------------
   // QR display state
-  // -------------------
+
   const [qrGenerated, setQrGenerated] = useState(false); // Whether QR image is displayed
   const qrRef = useRef(null); // Reference to QR section for auto-scrolling
 
-  // -------------------
   // Handle Generate QR button click
-  // -------------------
+
   const handleGenerateQR = () => {
     if (!department || !year || !section) {
       alert("Please select department, year, and section.");
@@ -52,9 +49,8 @@ const StudentDashboard = () => {
     setQrGenerated(true); // Show QR image
   };
 
-  // -------------------
   // Scroll down to QR image automatically when it’s displayed
-  // -------------------
+
   useEffect(() => {
     if (qrGenerated && qrRef.current) {
       qrRef.current.scrollIntoView({ behavior: "smooth" });
@@ -63,17 +59,13 @@ const StudentDashboard = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8">
-      {/* -------------------
-          Heading
-      ------------------- */}
+      {/* Heading */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
         Scan Here to Log Your {" "}
         <span className="font-extrabold text-blue-600">Attendance</span>
       </p>
 
-      {/* -------------------
-          Form Card
-      ------------------- */}
+      {/* Form Card */}
       <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm flex flex-col gap-4">
         {/* Department Dropdown */}
         <SelectInput
