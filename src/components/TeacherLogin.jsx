@@ -25,7 +25,7 @@ export default function Login() {
       <div className="w-full max-w-md bg-white shadow-md rounded-2xl p-8">
         {/* Title */}
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
-          TrackIn Login
+          TrackIn Login as a Teacher
         </h1>
 
         {/* Login form */}
