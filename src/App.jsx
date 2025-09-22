@@ -3,9 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+// Import Loging Pages
 import Landing from "./pages/Landing";
 import StudentLogin from "./pages/StudentLogin";
 import TeacherLogin from "./pages/TeacherLogin";
+
+//  Import dashboards
+import StudentDashboard from "./pages/StudentDashboard";
+import TeacherDashboard from "./pages/TeacherDashboard";
+
 
 function App() {
   return (
@@ -14,9 +20,20 @@ function App() {
         <Navbar />
         <main className="flex-grow">
           <Routes>
+            {/* Landing Page */}
             <Route path="/" element={<Landing />} />
+
+            {/* Login Page */}
             <Route path="/student" element={<StudentLogin />} />
             <Route path="/teacher" element={<TeacherLogin />} />
+
+            {/* ✅ Dashboard pages */}
+            <Route path="/student-dashboard" element={<StudentDashboard />} />
+            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+
+            {/* Teacher Dashboard*/} 
+            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+
           </Routes>
         </main>
         <Footer />
