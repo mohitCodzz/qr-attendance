@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function Landing() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-6 bg-gradient-to-b from-blue-50 to-white">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4 bg-gradient-to-b from-blue-50 to-white">
       <h1 className="text-5xl font-extrabold mb-2 text-grey-600 drop-shadow-sm">Welcome to </h1>
-      
+
       {/* App title */}
       <h1 className="text-5xl font-extrabold mb-2 text-blue-600 drop-shadow-sm">
         TrackIn
