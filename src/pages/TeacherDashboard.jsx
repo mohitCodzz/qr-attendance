@@ -108,10 +108,7 @@ const StudentDashboard = () => {
         </button>
       </div>
 
-      {/* -------------------
-          QR Image Section
-          Displayed after Generate QR is clicked
-      ------------------- */}
+      {/* QR Image Section Displayed after Generate QR is clicked */}
       {qrGenerated && (
         <div
           ref={qrRef} // Scroll target
