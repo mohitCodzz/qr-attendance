@@ -67,8 +67,8 @@ const StudentDashboard = () => {
           Heading
       ------------------- */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
-        Generate QR to mark Attendance for your{" "}
-        <span className="font-extrabold text-blue-600">Class</span>
+        Scan Here to Log Your {" "}
+        <span className="font-extrabold text-blue-600">Attendance</span>
       </p>
 
       {/* -------------------
