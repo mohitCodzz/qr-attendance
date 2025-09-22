@@ -1,4 +1,4 @@
-// Teacher Dashboard component - QR and all
+// Student Dashboard component - QR and all
 
 import React, { useState } from 'react';
 import StudentLogin from './StudentLogin';
