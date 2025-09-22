@@ -61,8 +61,8 @@ const StudentDashboard = () => {
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8">
       {/* Heading */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
-        Scan Here to Log Your {" "}
-        <span className="font-extrabold text-blue-600">Attendance</span>
+        Choose your Department, Year, and Section to create {" "}
+        <span className="font-extrabold text-blue-600">QR code</span>
       </p>
 
       {/* Form Card */}
