@@ -16,7 +16,7 @@ export default function Navbar() {
       {/* Navbar Text*/}
       <div className="w-full bg-blue-600 text-white text-center overflow-hidden relative">
         <div className="animate-marquee whitespace-nowrap py-2 px-4 font-semibold text-sm md:text-base">
-          <span className="mx-4">🚀 TrackIn – Effortless Attendance</span>
+          <span className="mx-4">🚀 Effortless Attendance</span>
           <span className="mx-4">📊 Real-Time Dashboard</span>
           <span className="mx-4">🔒 Secure Login</span>
         </div>
