@@ -1,4 +1,5 @@
-// src/pages/Login.jsx
+// Teacher Login component
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
