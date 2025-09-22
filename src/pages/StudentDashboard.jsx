@@ -70,49 +70,18 @@ const AttendanceForm = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans">
-      <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-md">
-        {/* Instructions */}
-        <p className="text-center text-gray-700 mb-4 font-medium">
-          Attendance lagane ke liye Scan QR Code wale button par click karein
-        </p>
-
-        {/* Form Fields */}
-        <form className="space-y-4">
-          <SelectInput
-            placeholder="Select Department"
-            value={department}
-            onChange={(e) => setDepartment(e.target.value)}
-            options={["Engineering", "Arts & Sciences", "Business"]}
-          />
-          <SelectInput
-            placeholder="Select Course"
-            value={course}
-            onChange={(e) => setCourse(e.target.value)}
-            options={["Computer Science", "Information Technology", "Electronics"]}
-          />
-          <SelectInput
-            placeholder="Select Year"
-            value={year}
-            onChange={(e) => setYear(e.target.value)}
-            options={["1st Year", "2nd Year", "3rd Year", "4th Year"]}
-          />
-          <SelectInput
-            placeholder="Select Section"
-            value={section}
-            onChange={(e) => setSection(e.target.value)}
-            options={["Section A", "Section B", "Section C"]}
-          />
-
-          {/* Next Button */}
-          <button
-            type="button"
-            onClick={handleNext}
-            className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg mt-2 hover:bg-blue-700 transition-transform transform hover:scale-105"
-          >
-            Save Settings
-          </button>
-        </form>
-
+      {/* Message */}
+        <p className="text-lg text-gray-700 mb-6 text-center max-w-md">
+        Attendance Made Easy with <span className="font-semibold text-gray-600">TrackIn</span>
+      </p>
+      <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm flex items-center justify-center mb-6">
+        <img
+          src="/images/scanningQR.png"
+          alt="Landing"
+          className="w-56 sm:w-64 h-auto object-contain"
+        />
+      </div>
+      <div>
         {/* Scan QR Code Button */}
         <button
           onClick={handleScanClick}
