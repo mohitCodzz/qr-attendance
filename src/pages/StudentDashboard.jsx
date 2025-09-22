@@ -1,4 +1,4 @@
-// src/pages/StudentDashboard.jsx
+// StudentDashboard.jsx
 
 import React, { useState } from "react";
 
