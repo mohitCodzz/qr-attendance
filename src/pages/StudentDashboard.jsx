@@ -1,4 +1,5 @@
-// src/pages/AttendanceForm.jsx
+// src/pages/StudentDashboard.jsx
+
 import React, { useState } from "react";
 
 
@@ -28,7 +29,7 @@ const AttendanceForm = () => {
       console.error("QR Scan Error:", error);
     }
   };
-  
+
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans">
       {/* Message */}
