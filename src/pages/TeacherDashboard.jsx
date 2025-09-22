@@ -111,7 +111,7 @@ const StudentDashboard = () => {
             QR Code for {department}, {year}, {section}
           </p>
 
-          {/* Local QR image */}
+          {/* QR image */}
           <img
             src="/images/qr-code.png" 
             alt="QR Code"
