@@ -71,9 +71,13 @@ const AttendanceForm = () => {
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans">
       {/* Message */}
-        <p className="text-lg text-gray-700 mb-6 text-center max-w-md">
-        Attendance Made Easy with <span className="font-semibold text-gray-600">TrackIn</span>
+      <p className="text-lg sm:text-xl text-gray-700 mb-12 text-center max-w-md">
+        Attendance Made Easy with{" "}
+        <span className="font-extrabold text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
+          TrackIn
+        </span>
       </p>
+
       <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm flex items-center justify-center mb-6">
         <img
           src="/images/scanningQR.png"
