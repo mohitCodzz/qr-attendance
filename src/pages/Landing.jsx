@@ -29,7 +29,7 @@ export default function Landing() {
         {/* Student Login Button */}
         <Link
           to="/student"
-          className="px-6 py-3 bg-blue-500 text-white rounded-xl shadow hover:bg-blue-600 transition text-center"
+          className="px-6 py-3 bg-blue-500 text-white rounded-xl shadow hover:bg-blue-600 transition transform transform hover:scale-105"
         >
           Student Login
         </Link>
@@ -37,7 +37,7 @@ export default function Landing() {
         {/* Teacher Login Button */}
         <Link
           to="/teacher"
-          className="px-6 py-3 bg-green-500 text-white rounded-xl shadow hover:bg-green-600 transition text-center"
+          className="px-6 py-3 bg-green-500 text-white rounded-xl shadow hover:bg-green-600 transition transform hover:scale-105"
         >
           Teacher Login
         </Link>
