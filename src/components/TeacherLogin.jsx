@@ -12,9 +12,9 @@ export default function Login() {
 
     // Dummy login logic
     if (email === "student@trackin.com" && password === "1234") {
-      navigate("/student"); // redirect to student page
+      navigate("/student-dashboard"); // redirect to student page
     } else if (email === "teacher@trackin.com" && password === "1234") {
-      navigate("/teacher"); // redirect to teacher page
+      navigate("/teacher-dashboard"); // redirect to teacher page
     } else {
       alert("Invalid credentials!");
     }
