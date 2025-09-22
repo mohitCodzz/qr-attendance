@@ -1,5 +1,4 @@
 // Teacher Dashboard component - QR and all
-// src/AttendanceForm.js
 
 import React, { useState } from 'react';
 import StudentLogin from './StudentLogin';
