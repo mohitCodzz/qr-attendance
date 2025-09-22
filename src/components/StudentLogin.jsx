@@ -22,10 +22,11 @@ export default function Login() {
 
   return (
     <div>
+      
       <div className="w-full max-w-md bg-white shadow-md rounded-2xl p-8">
         {/* Title */}
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
-          TrackIn Login as a Student
+          Login
         </h1>
 
         {/* Login form */}
@@ -59,8 +60,24 @@ export default function Login() {
               required
             />
           </div>
+          {/* Links */}
+          <div className="flex justify-between mt-6 gap-x-16">
+            {/* Back to login */}
+            <a href="/" className="text-sm text-blue-500 hover:underline">
+              Back to Login
+            </a>
 
-          {/* Button */}
+            {/* Forgot Password */}
+            <a
+              href="/forgot-password"
+              className="text-sm text-blue-500 hover:underline"
+            >
+              Forgot Password?
+            </a>
+          </div>
+
+
+          {/* Submit Button */}
           <button
             type="submit"
             className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg shadow hover:bg-blue-600 transition"
