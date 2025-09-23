@@ -63,8 +63,7 @@ const TeacherDashboard = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
-
-       {/* Back to Login */}
+      {/* Back to Login */}
       {/* Teacher Profile Section (Top Right Corner) */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
@@ -73,7 +72,7 @@ const TeacherDashboard = () => {
           className="w-10 h-10 rounded-full border-2 border-white"
         />
         <div className="flex flex-col text-sm pr-2">
-          <p className="text-gray-900 font-bold">Mohit Jaryal</p>
+          <p className="text-gray-900 font-bold">Teacher 1</p>
           <p className="text-gray-500 text-xs">ID: teacher12345</p>
         </div>
       </div>
@@ -85,6 +84,15 @@ const TeacherDashboard = () => {
         </h1>
         <p className="text-md sm:text-lg text-gray-600 mt-2">
           Here's a quick look at your day.
+        </p>
+      </div>
+
+      <div className="w-full max-w-lg mx-auto mb-6 text-center">
+        <p className="text-xl font-semibold text-gray-700">
+          Currently it’s your <span className="text-blue-600">Java</span> class
+        </p>
+        <p className="text-gray-500 mt-1">
+          Teacher: <span className="font-medium text-green-600">Mr.  Rahul Sharma</span>
         </p>
       </div>
 
