@@ -68,6 +68,30 @@ const TeacherDashboard = () => {
           <p className="text-gray-500 text-xs">ID: teacher12345</p>
         </div>
       </div>
+
+      {/* New Section: Welcome & Status */}
+      <div className="text-center mb-6">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
+          Welcome back, <span className="text-blue-600">Mohit!</span> 👋
+        </h1>
+        <p className="text-md sm:text-lg text-gray-600 mt-2">
+          Here's a quick look at your day.
+        </p>
+      </div>
+
+      <div className="flex justify-center gap-6 mb-8 w-full max-w-lg">
+        {/* Status Card 1 */}
+        <div className="bg-white rounded-xl shadow-lg p-5 flex flex-col items-center flex-1">
+          <p className="text-3xl font-bold text-blue-600">3</p>
+          <p className="text-gray-500 text-sm mt-1">Classes Today</p>
+        </div>
+        
+        {/* Status Card 2 */}
+        <div className="bg-white rounded-xl shadow-lg p-5 flex flex-col items-center flex-1">
+          <p className="text-3xl font-bold text-green-600">95%</p>
+          <p className="text-gray-500 text-sm mt-1">Average Attendance</p>
+        </div>
+      </div>
       
       {/* Main Content */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
