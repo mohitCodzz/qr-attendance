@@ -36,6 +36,7 @@ const SelectInput = ({ value, onChange, options, placeholder }) => {
 const TeacherDashboard = () => {
   // Form states
   const [department, setDepartment] = useState(""); // Selected department
+  const [session, setSession] = useState(""); // Selected session
   const [year, setYear] = useState(""); // Selected year
   const [section, setSection] = useState(""); // Selected section
 
@@ -62,15 +63,8 @@ const TeacherDashboard = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
-      {/* Back to Login */}
 
-      <a
-        href="/"
-        className="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg mt-4 hover:bg-green-700 transition-transform transform hover:scale-105 text-center block"
-      >
-        Back to Login
-      </a>
-
+       {/* Back to Login */}
       {/* Teacher Profile Section (Top Right Corner) */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
@@ -127,8 +121,8 @@ const TeacherDashboard = () => {
         {/* Session Dropdown */}
         <SelectInput
           placeholder="Select Session"
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
+          value={session}
+          onChange={(e) => setSession(e.target.value)}
           options={["2023-2027", "2024-2028", "2025-2029"]}
         />
 
@@ -165,7 +159,7 @@ const TeacherDashboard = () => {
         >
           {/* QR Label */}
           <p className="text-center text-gray-700 font-medium mb-4">
-            QR Code for {department}, {year}, {section}
+            QR Code for {department},{session}, {year}, {section}
           </p>
 
           {/* QR image */}
