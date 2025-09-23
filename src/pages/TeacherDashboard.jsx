@@ -80,7 +80,7 @@ const TeacherDashboard = () => {
       {/* New Section: Welcome & Status */}
       <div className="text-center mb-6">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
-          Welcome back, <span className="text-blue-600">Mohit!</span> 👋
+          Welcome back, <span className="text-blue-600">Rahul Sharma!</span> 👋
         </h1>
         <p className="text-md sm:text-lg text-gray-600 mt-2">
           Here's a quick look at your day.
