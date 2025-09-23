@@ -1,5 +1,5 @@
 // src/pages/TeacherLogin.jsx
-import AttendanceList from "../components/TeacherLogin";
+import AttendanceList from "../components/StudentLogin";
 
 export default function TeacherLogin() {
   return (
