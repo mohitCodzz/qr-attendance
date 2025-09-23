@@ -62,6 +62,15 @@ const TeacherDashboard = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
+      {/* Back to Login */}
+
+      <a
+        href="/"
+        className="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg mt-4 hover:bg-green-700 transition-transform transform hover:scale-105 text-center block"
+      >
+        Back to Login
+      </a>
+
       {/* Teacher Profile Section (Top Right Corner) */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
