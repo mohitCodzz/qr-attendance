@@ -1,5 +1,3 @@
-// TeacherDashboard.jsx
-
 import React, { useState, useRef, useEffect } from "react";
 
 // Reusable select input component for dropdowns (Department, Year, Section)
@@ -27,30 +25,27 @@ const SelectInput = ({ value, onChange, options, placeholder }) => {
   );
 };
 
-const StudentDashboard = () => {
-
+const TeacherDashboard = () => {
   // Form states
   const [department, setDepartment] = useState(""); // Selected department
   const [year, setYear] = useState("");             // Selected year
   const [section, setSection] = useState("");       // Selected section
 
   // QR display state
-
   const [qrGenerated, setQrGenerated] = useState(false); // Whether QR image is displayed
   const qrRef = useRef(null); // Reference to QR section for auto-scrolling
 
   // Handle Generate QR button click
-
   const handleGenerateQR = () => {
     if (!department || !year || !section) {
-      alert("Please select department, year, and section.");
+      // NOTE: Replaced window.alert with a console log as window.alert is not supported in the live preview.
+      console.log("Please select department, year, and section.");
       return;
     }
     setQrGenerated(true); // Show QR image
   };
 
   // Scroll down to QR image automatically when it’s displayed
-
   useEffect(() => {
     if (qrGenerated && qrRef.current) {
       qrRef.current.scrollIntoView({ behavior: "smooth" });
@@ -58,8 +53,23 @@ const StudentDashboard = () => {
   }, [qrGenerated]);
 
   return (
-    <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8">
-      {/* Heading */}
+         
+    <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
+
+      {/* Teacher Profile Section (Top Right Corner) */}
+      <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
+        <img
+          src="../images/profile.png" // Placeholder for the profile picture
+          alt="Teacher Profile"
+          className="w-10 h-10 rounded-full border-2 border-white"
+        />
+        <div className="flex flex-col text-sm pr-2">
+          <p className="text-gray-900 font-bold">Mohit Jaryal</p>
+          <p className="text-gray-500 text-xs">ID: teacher12345</p>
+        </div>
+      </div>
+      
+      {/* Main Content */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
         Choose your Department, Year, and Section to create {" "}
         <span className="font-extrabold text-blue-600">QR code</span>
@@ -113,7 +123,7 @@ const StudentDashboard = () => {
 
           {/* QR image */}
           <img
-            src="/images/qr-code.png" 
+            src="https://placehold.co/192x192/000000/FFFFFF?text=QR"
             alt="QR Code"
             className="w-48 h-48 object-contain"
           />
@@ -123,4 +133,4 @@ const StudentDashboard = () => {
   );
 };
 
-export default StudentDashboard;
+export default TeacherDashboard;
