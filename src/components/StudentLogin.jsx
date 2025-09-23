@@ -8,18 +8,16 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+   // Handle login form submission for students only
   const handleLogin = (e) => {
-    e.preventDefault();
-
-    // Dummy login logic
-    if (email === "student@trackin.com" && password === "1234") {
-      navigate("/student-dashboard"); // redirect to student page
-    } else if (email === "teacher@trackin.com" && password === "1234") {
-      navigate("/teacher-dashboard"); // redirect to teacher page
-    } else {
-      alert("Invalid credentials!");
-    }
-  };
+  e.preventDefault();
+  // Only student credentials allowed
+  if (email === "student@trackin.com" && password === "1234") {
+    navigate("/student-dashboard");
+  } else {
+    alert("Invalid student credentials!");
+  }
+};
 
   return (
     <div>
