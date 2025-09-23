@@ -122,7 +122,7 @@ const TeacherDashboard = () => {
           placeholder="Select Section"
           value={section}
           onChange={(e) => setSection(e.target.value)}
-          options={["Section A", "Section B", "Section C"]}
+          options={["Section M1", "Section M2", "Section M3"]}
         />
 
         {/* Generate QR Button */}
@@ -147,7 +147,7 @@ const TeacherDashboard = () => {
 
           {/* QR image */}
           <img
-            src="https://placehold.co/192x192/000000/FFFFFF?text=QR"
+            src="../images/qr-code.png"
             alt="QR Code"
             className="w-48 h-48 object-contain"
           />
