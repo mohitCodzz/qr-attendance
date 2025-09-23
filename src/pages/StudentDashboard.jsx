@@ -25,7 +25,6 @@ const AttendanceForm = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
-      
       {/* User id and profile pic */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
@@ -44,14 +43,16 @@ const AttendanceForm = () => {
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
           Welcome back, <span className="text-blue-600">Mohit!</span> 👋
         </h1>
+        {/* Add spacing line */}
+        <div className="h-8"></div> {/* creates vertical gap */}
         <p className="text-md sm:text-lg text-gray-600 mt-2">
           {`Hey ${"Mohit"}, scan this QR for marking attendance in your subject: `}
           <span className="font-semibold text-blue-600">DCCN</span>
         </p>
       </div>
-
+              
       {/* Main Content */}
-      <main className="flex flex-col items-center justify-center flex-grow px-4 py-8">
+      <main className="flex flex-col items-center justify-center flex-grow px-1 py-4">
         <p className="text-lg sm:text-xl text-gray-700 mb-12 text-center max-w-md">
           Mark your attendence with{" "}
           <span className="font-extrabold text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
