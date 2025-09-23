@@ -44,10 +44,9 @@ const AttendanceForm = () => {
           Welcome back, <span className="text-blue-600">Mohit!</span> 👋
         </h1>
         <p className="text-md sm:text-lg text-gray-600 mt-2">
-  {`Hey ${"Mohit"}, scan this QR for marking attendance in your subject: `}
-  <span className="font-semibold text-blue-600">DCCN</span>
-</p>
-
+          {`Hey ${"Mohit"}, scan this QR for marking attendance in your subject: `}
+          <span className="font-semibold text-blue-600">DCCN</span>
+        </p>
       </div>
 
       {/* Main Content */}
