@@ -44,7 +44,7 @@ const AttendanceForm = () => {
           Welcome back, <span className="text-blue-600">Mohit!</span> 👋
         </h1>
         {/* Add spacing line */}
-        <div className="h-8"></div> {/* creates vertical gap */}
+        <div className="h-6"></div> {/* creates vertical gap */}
         <p className="text-md sm:text-lg text-gray-600 mt-0">
           {`Hey ${"Mohit"}, scan this QR for marking attendance in your subject: `}
           <span className="font-semibold text-blue-600">DCCN</span>
