@@ -9,15 +9,23 @@ const SelectInput = ({ value, onChange, options, placeholder }) => {
         onChange={onChange} // Update parent state on change
         className="w-full appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
       >
-        <option value="" disabled hidden>{placeholder}</option>
+        <option value="" disabled hidden>
+          {placeholder}
+        </option>
         {options.map((option) => (
-          <option key={option} value={option}>{option}</option>
+          <option key={option} value={option}>
+            {option}
+          </option>
         ))}
       </select>
 
       {/* Dropdown arrow icon */}
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
-        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <svg
+          className="fill-current h-4 w-4"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
           <path d="M5.516 7.548c.436-.446 1.144-.446 1.58 0L10 10.405l2.904-2.857c.436-.446 1.144-.446 1.58 0 .436.445.436 1.162 0 1.608l-3.694 3.63c-.436.446-1.144.446-1.58 0L5.516 9.156c-.436-.446-.436-1.162 0-1.608z" />
         </svg>
       </div>
@@ -28,8 +36,8 @@ const SelectInput = ({ value, onChange, options, placeholder }) => {
 const TeacherDashboard = () => {
   // Form states
   const [department, setDepartment] = useState(""); // Selected department
-  const [year, setYear] = useState("");             // Selected year
-  const [section, setSection] = useState("");       // Selected section
+  const [year, setYear] = useState(""); // Selected year
+  const [section, setSection] = useState(""); // Selected section
 
   // QR display state
   const [qrGenerated, setQrGenerated] = useState(false); // Whether QR image is displayed
@@ -53,9 +61,7 @@ const TeacherDashboard = () => {
   }, [qrGenerated]);
 
   return (
-         
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
-
       {/* Teacher Profile Section (Top Right Corner) */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
@@ -85,17 +91,17 @@ const TeacherDashboard = () => {
           <p className="text-3xl font-bold text-blue-600">3</p>
           <p className="text-gray-500 text-sm mt-1">Classes Today</p>
         </div>
-        
+
         {/* Status Card 2 */}
         <div className="bg-white rounded-xl shadow-lg p-5 flex flex-col items-center flex-1">
           <p className="text-3xl font-bold text-green-600">95%</p>
           <p className="text-gray-500 text-sm mt-1">Average Attendance</p>
         </div>
       </div>
-      
+
       {/* Main Content */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
-        Choose your Department, Year, and Section to create {" "}
+        Choose your Department, Year, and Section to create{" "}
         <span className="font-extrabold text-blue-600">QR code</span>
       </p>
 
@@ -107,6 +113,14 @@ const TeacherDashboard = () => {
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
           options={["Engineering", "Arts & Sciences", "Business"]}
+        />
+
+        {/* Session Dropdown */}
+        <SelectInput
+          placeholder="Select Session"
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          options={["2023-2027", "2024-2028", "2025-2029"]}
         />
 
         {/* Year Dropdown */}
