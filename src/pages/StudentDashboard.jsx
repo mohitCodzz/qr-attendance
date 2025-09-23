@@ -25,6 +25,7 @@ const AttendanceForm = () => {
 
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
+      
       {/* User id and profile pic */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
