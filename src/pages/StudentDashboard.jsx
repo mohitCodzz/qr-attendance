@@ -53,7 +53,7 @@ const AttendanceForm = () => {
       {/* Main Content */}
       <main className="flex flex-col items-center justify-center flex-grow px-4 py-8">
         <p className="text-lg sm:text-xl text-gray-700 mb-12 text-center max-w-md">
-          Attendance Made Easy with{" "}
+          Mark your attendence with{" "}
           <span className="font-extrabold text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
             TrackIn
           </span>
