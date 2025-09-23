@@ -72,7 +72,7 @@ const TeacherDashboard = () => {
           className="w-10 h-10 rounded-full border-2 border-white"
         />
         <div className="flex flex-col text-sm pr-2">
-          <p className="text-gray-900 font-bold">Teacher 1</p>
+          <p className="text-gray-900 font-bold">Rahul Sharma</p>
           <p className="text-gray-500 text-xs">ID: teacher12345</p>
         </div>
       </div>
