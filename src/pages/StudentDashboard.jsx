@@ -39,28 +39,27 @@ const AttendanceForm = () => {
       </div>
 
       {/* Welcome  */}
-      <div className="text-center mb-6">
+      <div className="text-center mb-*">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
           Welcome back, <span className="text-blue-600">Mohit!</span> 👋
         </h1>
         {/* Add spacing line */}
         <div className="h-8"></div> {/* creates vertical gap */}
-        <p className="text-md sm:text-lg text-gray-600 mt-2">
+        <p className="text-md sm:text-lg text-gray-600 mt-0">
           {`Hey ${"Mohit"}, scan this QR for marking attendance in your subject: `}
           <span className="font-semibold text-blue-600">DCCN</span>
         </p>
       </div>
-              
+
       {/* Main Content */}
       <main className="flex flex-col items-center justify-center flex-grow px-1 py-4">
-        <p className="text-lg sm:text-xl text-gray-700 mb-12 text-center max-w-md">
+        <p className="text-lg sm:text-xl text-gray-700 mb-2 text-center max-w-md">
           Mark your attendence with{" "}
           <span className="font-extrabold text-blue-600 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700">
             TrackIn
           </span>
         </p>
-
-        <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm flex items-center justify-center mb-6">
+        <div className="bg-white rounded-2xl shadow-xl p-2 w-full max-w-sm flex items-center justify-center mb-6">
           <img
             src="/images/scanningQR.png"
             alt="Scanning QR"
