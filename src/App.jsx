@@ -31,9 +31,6 @@ function App() {
             <Route path="/student-dashboard" element={<StudentDashboard />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
 
-            {/* Teacher Dashboard*/} 
-            <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
-
           </Routes>
         </main>
         <Footer />
