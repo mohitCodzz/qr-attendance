@@ -65,7 +65,7 @@ const AttendanceForm = () => {
         <div className="h-4"></div>
         <p className="text-md sm:text-lg text-gray-600 mt-0">
           Hey Mohit, scan this QR for marking attendance in your subject:{" "}
-          <span className="font-semibold text-blue-600">DCCN</span>
+          <span className="font-semibold text-blue-600">JAVA</span>
         </p>
       </div>
 
