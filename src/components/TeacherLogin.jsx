@@ -7,7 +7,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+ 
+  // Handle login form submission for students only
   const handleLogin = (e) => {
   e.preventDefault();
   // Only teacher credentials allowed
