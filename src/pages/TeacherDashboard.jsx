@@ -1,13 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 
 // Reusable select input component for dropdowns (Department, Year, Section)
-const SelectInput = ({ value, onChange, options, placeholder }) => {
+const SelectInput = ({ value, onChange, options, placeholder, error }) => {
   return (
-    <div className="relative">
+    <div className="relative mb-1">
       <select
         value={value} // Controlled component value
         onChange={onChange} // Update parent state on change
-        className="w-full appearance-none bg-white border border-gray-300 rounded-lg py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400"
+        className={`w-full appearance-none bg-white border ${
+          error ? "border-red-500" : "border-gray-300"
+        } rounded-lg py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400`}
       >
         <option value="" disabled hidden>
           {placeholder}
@@ -29,6 +31,9 @@ const SelectInput = ({ value, onChange, options, placeholder }) => {
           <path d="M5.516 7.548c.436-.446 1.144-.446 1.58 0L10 10.405l2.904-2.857c.436-.446 1.144-.446 1.58 0 .436.445.436 1.162 0 1.608l-3.694 3.63c-.436.446-1.144.446-1.58 0L5.516 9.156c-.436-.446-.436-1.162 0-1.608z" />
         </svg>
       </div>
+
+      {/* Inline error message if field not selected */}
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 };
@@ -40,18 +45,32 @@ const TeacherDashboard = () => {
   const [year, setYear] = useState(""); // Selected year
   const [section, setSection] = useState(""); // Selected section
 
+  // Error states for validation
+  const [errors, setErrors] = useState({}); // Store errors for each field
+
   // QR display state
   const [qrGenerated, setQrGenerated] = useState(false); // Whether QR image is displayed
   const qrRef = useRef(null); // Reference to QR section for auto-scrolling
 
   // Handle Generate QR button click
   const handleGenerateQR = () => {
-    if (!department || !year || !section) {
-      // NOTE: Replaced window.alert with a console log as window.alert is not supported in the live preview.
-      console.log("Please select department, year, and section.");
+    const newErrors = {}; // Collect errors here
+
+    // Check each dropdown and add error if empty
+    if (!department) newErrors.department = "Please select a department.";
+    if (!session) newErrors.session = "Please select a session.";
+    if (!year) newErrors.year = "Please select a year.";
+    if (!section) newErrors.section = "Please select a section.";
+
+    setErrors(newErrors); // Update errors state
+
+    // Stop if there are any errors
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
-    setQrGenerated(true); // Show QR image
+
+    // If no errors, generate QR
+    setQrGenerated(true);
   };
 
   // Scroll down to QR image automatically when it’s displayed
@@ -92,7 +111,7 @@ const TeacherDashboard = () => {
           Currently it’s your <span className="text-blue-600">Java</span> class
         </p>
         <p className="text-gray-500 mt-1">
-          Teacher: <span className="font-medium text-green-600">Mr.  Rahul Sharma</span>
+          Teacher: <span className="font-medium text-green-600">Mr. Rahul Sharma</span>
         </p>
       </div>
 
@@ -124,6 +143,7 @@ const TeacherDashboard = () => {
           value={department}
           onChange={(e) => setDepartment(e.target.value)}
           options={["Engineering", "Arts & Sciences", "Business"]}
+          error={errors.department}
         />
 
         {/* Session Dropdown */}
@@ -132,6 +152,7 @@ const TeacherDashboard = () => {
           value={session}
           onChange={(e) => setSession(e.target.value)}
           options={["2023-2027", "2024-2028", "2025-2029"]}
+          error={errors.session}
         />
 
         {/* Year Dropdown */}
@@ -140,6 +161,7 @@ const TeacherDashboard = () => {
           value={year}
           onChange={(e) => setYear(e.target.value)}
           options={["1st Year", "2nd Year", "3rd Year", "4th Year"]}
+          error={errors.year}
         />
 
         {/* Section Dropdown */}
@@ -148,6 +170,7 @@ const TeacherDashboard = () => {
           value={section}
           onChange={(e) => setSection(e.target.value)}
           options={["Section M1", "Section M2", "Section M3"]}
+          error={errors.section}
         />
 
         {/* Generate QR Button */}
@@ -167,7 +190,7 @@ const TeacherDashboard = () => {
         >
           {/* QR Label */}
           <p className="text-center text-gray-700 font-medium mb-4">
-            QR Code for {department},{session}, {year}, {section}
+            QR Code for {department}, {session}, {year}, {section}
           </p>
 
           {/* QR image */}
