@@ -52,41 +52,68 @@ const TeacherDashboard = () => {
   const [qrGenerated, setQrGenerated] = useState(false); // Whether QR image is displayed
   const qrRef = useRef(null); // Reference to QR section for auto-scrolling
 
+  // Timer state in seconds
+  const [timeLeft, setTimeLeft] = useState(0); 
+
+  // NEW: Track if QR has expired
+  const [qrExpired, setQrExpired] = useState(false);
+
   // Handle Generate QR button click
   const handleGenerateQR = () => {
-    const newErrors = {}; // Collect errors here
+    const newErrors = {};
 
-    // Check each dropdown and add error if empty
+    // Validate each dropdown
     if (!department) newErrors.department = "Please select a department.";
     if (!session) newErrors.session = "Please select a session.";
     if (!year) newErrors.year = "Please select a year.";
     if (!section) newErrors.section = "Please select a section.";
 
-    setErrors(newErrors); // Update errors state
+    setErrors(newErrors);
 
-    // Stop if there are any errors
-    if (Object.keys(newErrors).length > 0) {
-      return;
-    }
+    // Stop if there are errors
+    if (Object.keys(newErrors).length > 0) return;
 
-    // If no errors, generate QR
+    // If valid, generate QR and start 5-min timer
     setQrGenerated(true);
+    setTimeLeft(300); // 5 minutes = 300 seconds
+    setQrExpired(false); // Reset expired status
   };
 
-  // Scroll down to QR image automatically when it’s displayed
+  // Countdown effect
+  useEffect(() => {
+    if (qrGenerated && timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((prev) => prev - 1);
+      }, 1000);
+
+      return () => clearInterval(timer);
+    } else if (timeLeft === 0 && qrGenerated) {
+      // QR expired: hide QR and mark as expired
+      setQrGenerated(false);
+      setQrExpired(true);
+    }
+  }, [qrGenerated, timeLeft]);
+
+  // Scroll to QR when generated
   useEffect(() => {
     if (qrGenerated && qrRef.current) {
       qrRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [qrGenerated]);
 
+  // Format seconds into mm:ss
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
   return (
     <div className="bg-slate-100 min-h-screen flex flex-col items-center justify-center font-sans px-4 py-8 relative">
-      {/* Back to Login */}
-      {/* Teacher Profile Section (Top Right Corner) */}
+      {/* Teacher Profile Section */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-white rounded-full p-2 shadow-md">
         <img
-          src="../images/profile.png" // Placeholder for the profile picture
+          src="../images/profile.png"
           alt="Teacher Profile"
           className="w-10 h-10 rounded-full border-2 border-white"
         />
@@ -96,7 +123,7 @@ const TeacherDashboard = () => {
         </div>
       </div>
 
-      {/* New Section: Welcome & Status */}
+      {/* Welcome Section */}
       <div className="text-center mb-6">
         <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800">
           Welcome back, <span className="text-blue-600">Rahul Sharma!</span> 👋
@@ -106,6 +133,7 @@ const TeacherDashboard = () => {
         </p>
       </div>
 
+      {/* Current Class Info */}
       <div className="w-full max-w-lg mx-auto mb-6 text-center">
         <p className="text-xl font-semibold text-gray-700">
           Currently it’s your <span className="text-blue-600">Java</span> class
@@ -115,21 +143,19 @@ const TeacherDashboard = () => {
         </p>
       </div>
 
+      {/* Status Cards */}
       <div className="flex justify-center gap-6 mb-8 w-full max-w-lg">
-        {/* Status Card 1 */}
         <div className="bg-white rounded-xl shadow-lg p-5 flex flex-col items-center flex-1">
           <p className="text-3xl font-bold text-blue-600">3</p>
           <p className="text-gray-500 text-sm mt-1">Classes Today</p>
         </div>
-
-        {/* Status Card 2 */}
         <div className="bg-white rounded-xl shadow-lg p-5 flex flex-col items-center flex-1">
           <p className="text-3xl font-bold text-green-600">95%</p>
           <p className="text-gray-500 text-sm mt-1">Average Attendance</p>
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Instruction */}
       <p className="text-lg sm:text-xl text-gray-700 mb-6 text-center max-w-md">
         Choose your Department, Year, and Section to create{" "}
         <span className="font-extrabold text-blue-600">QR code</span>
@@ -137,7 +163,6 @@ const TeacherDashboard = () => {
 
       {/* Form Card */}
       <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm flex flex-col gap-4">
-        {/* Department Dropdown */}
         <SelectInput
           placeholder="Select Department"
           value={department}
@@ -145,8 +170,6 @@ const TeacherDashboard = () => {
           options={["Engineering", "Arts & Sciences", "Business"]}
           error={errors.department}
         />
-
-        {/* Session Dropdown */}
         <SelectInput
           placeholder="Select Session"
           value={session}
@@ -154,8 +177,6 @@ const TeacherDashboard = () => {
           options={["2023-2027", "2024-2028", "2025-2029"]}
           error={errors.session}
         />
-
-        {/* Year Dropdown */}
         <SelectInput
           placeholder="Select Year"
           value={year}
@@ -163,8 +184,6 @@ const TeacherDashboard = () => {
           options={["1st Year", "2nd Year", "3rd Year", "4th Year"]}
           error={errors.year}
         />
-
-        {/* Section Dropdown */}
         <SelectInput
           placeholder="Select Section"
           value={section}
@@ -182,24 +201,34 @@ const TeacherDashboard = () => {
         </button>
       </div>
 
-      {/* QR Image Section Displayed after Generate QR is clicked */}
+      {/* QR Code Section with 5-min timer */}
       {qrGenerated && (
         <div
-          ref={qrRef} // Scroll target
+          ref={qrRef}
           className="mt-8 bg-white p-6 rounded-2xl shadow-xl flex flex-col items-center justify-center"
         >
-          {/* QR Label */}
           <p className="text-center text-gray-700 font-medium mb-4">
             QR Code for {department}, {session}, {year}, {section}
           </p>
 
-          {/* QR image */}
           <img
             src="../images/qr-code.png"
             alt="QR Code"
-            className="w-48 h-48 object-contain"
+            className="w-48 h-48 object-contain mb-4"
           />
+
+          {/* Countdown Timer */}
+          <p className="text-red-600 font-semibold text-lg">
+            Hurry up! QR valid for: {formatTime(timeLeft)}
+          </p>
         </div>
+      )}
+
+      {/* NEW: Message when QR actually expires */}
+      {qrExpired && (
+        <p className="mt-4 text-red-600 font-bold">
+          QR expired! Please generate a new one.
+        </p>
       )}
     </div>
   );
