@@ -14,13 +14,62 @@ export default function Navbar() {
       </h1>
 
       {/* Navbar Text*/}
-     <div className="w-full bg-blue-600 text-white text-center overflow-hidden relative">
-  <div className="animate-marquee flex flex-nowrap gap-6 py-2 px-2 md:px-4 font-semibold text-sm md:text-base">
-    <span className="flex-shrink-0">🚀 Effortless Attendance</span>
-    <span className="flex-shrink-0">📊 Real-Time Dashboard</span>
-    <span className="flex-shrink-0">🔒 Secure Login</span>
+  <div className="w-full bg-blue-600 text-white text-center overflow-hidden relative py-2">
+  {/* Marquee */}
+  <div className="marquee flex gap-6 whitespace-nowrap px-4">
+    <span className="marquee-item">🚀 Effortless Attendance</span>
+    <span className="marquee-item">📊 Real-Time Dashboard</span>
+    <span className="marquee-item">🔒 Secure Login</span>
+    <span className="marquee-item">📈 Instant Reports</span>
+    <span className="marquee-item">⚡ Fast Performance</span>
+    <span className="marquee-item">🔗 Easy Integration</span>
+    <span className="marquee-item">🛡️ Data Security</span>
+    {/* Repeat for seamless scroll */}
+    <span className="marquee-item">🚀 Effortless Attendance</span>
+    <span className="marquee-item">📊 Real-Time Dashboard</span>
+    <span className="marquee-item">🔒 Secure Login</span>
   </div>
+
+  {/* Gradient fade edges */}
+  <div className="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-blue-600 via-blue-600/50 to-transparent pointer-events-none"></div>
+  <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-blue-600 via-blue-600/50 to-transparent pointer-events-none"></div>
 </div>
+
+<style>
+{`
+  @keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes float-scale {
+    0%, 100% { transform: translateY(0) scale(1); }
+    25% { transform: translateY(-3px) scale(1.05); }
+    50% { transform: translateY(2px) scale(1); }
+    75% { transform: translateY(-2px) scale(1.03); }
+  }
+
+  .marquee {
+    display: inline-flex;
+    animation: marquee-scroll 20s linear infinite;
+  }
+
+  .marquee-item {
+    flex-shrink: 0;
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 0 1rem;
+    white-space: nowrap;
+    animation: float-scale 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+  }
+
+  .marquee:hover {
+    animation-play-state: paused;
+  }
+`}
+</style>
+
 
 
       {/* Links */}
