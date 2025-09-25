@@ -187,7 +187,7 @@ const TeacherDashboard = () => {
           onChange={(e) => setSession(e.target.value)}
           options={["2023-2027", "2024-2028", "2025-2029"]}
           error={errors.session}
-          disabled={qrGenerated} // Disable when QR is active
+          disabled={qrGenerated} // Disable dropdown when QR is active
         />
         <SelectInput
           placeholder="Select Year"
