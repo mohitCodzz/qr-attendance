@@ -1,15 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 
 // Reusable select input component for dropdowns (Department, Year, Section)
-const SelectInput = ({ value, onChange, options, placeholder, error }) => {
+const SelectInput = ({ value, onChange, options, placeholder, error, disabled }) => {
   return (
     <div className="relative mb-1">
       <select
         value={value} // Controlled component value
         onChange={onChange} // Update parent state on change
+        disabled={disabled} // Disable when QR is active
         className={`w-full appearance-none bg-white border ${
           error ? "border-red-500" : "border-gray-300"
-        } rounded-lg py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400`}
+        } rounded-lg py-3 px-4 pr-8 text-gray-700 leading-tight focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-400 ${
+          disabled ? "bg-gray-100 cursor-not-allowed" : ""
+        }`}
       >
         <option value="" disabled hidden>
           {placeholder}
@@ -40,29 +43,29 @@ const SelectInput = ({ value, onChange, options, placeholder, error }) => {
 
 const TeacherDashboard = () => {
   // Form states
-  const [department, setDepartment] = useState(""); // Selected department
-  const [session, setSession] = useState(""); // Selected session
-  const [year, setYear] = useState(""); // Selected year
-  const [section, setSection] = useState(""); // Selected section
+  const [department, setDepartment] = useState("");
+  const [session, setSession] = useState("");
+  const [year, setYear] = useState("");
+  const [section, setSection] = useState("");
 
-  // Error states for validation
-  const [errors, setErrors] = useState({}); // Store errors for each field
+  // Error states
+  const [errors, setErrors] = useState({});
 
   // QR display state
-  const [qrGenerated, setQrGenerated] = useState(false); // Whether QR image is displayed
-  const qrRef = useRef(null); // Reference to QR section for auto-scrolling
+  const [qrGenerated, setQrGenerated] = useState(false);
+  const qrRef = useRef(null);
 
   // Timer state in seconds
-  const [timeLeft, setTimeLeft] = useState(0); 
+  const [timeLeft, setTimeLeft] = useState(0);
 
-  // NEW: Track if QR has expired
+  // Track if QR expired
   const [qrExpired, setQrExpired] = useState(false);
 
   // Handle Generate QR button click
   const handleGenerateQR = () => {
     const newErrors = {};
 
-    // Validate each dropdown
+    // Validate dropdowns
     if (!department) newErrors.department = "Please select a department.";
     if (!session) newErrors.session = "Please select a session.";
     if (!year) newErrors.year = "Please select a year.";
@@ -70,13 +73,13 @@ const TeacherDashboard = () => {
 
     setErrors(newErrors);
 
-    // Stop if there are errors
+    // Stop if errors
     if (Object.keys(newErrors).length > 0) return;
 
-    // If valid, generate QR and start 5-min timer
+    // Generate QR and start 5-min timer
     setQrGenerated(true);
-    setTimeLeft(300); // 5 minutes = 300 seconds
-    setQrExpired(false); // Reset expired status
+    setTimeLeft(300); // 5 minutes
+    setQrExpired(false);
   };
 
   // Countdown effect
@@ -88,7 +91,7 @@ const TeacherDashboard = () => {
 
       return () => clearInterval(timer);
     } else if (timeLeft === 0 && qrGenerated) {
-      // QR expired: hide QR and mark as expired
+      // QR expired automatically
       setQrGenerated(false);
       setQrExpired(true);
     }
@@ -106,6 +109,13 @@ const TeacherDashboard = () => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
     return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
+
+  // Handle End QR manually
+  const handleEndQR = () => {
+    setQrGenerated(false);
+    setQrExpired(true);
+    setTimeLeft(0);
   };
 
   return (
@@ -169,6 +179,7 @@ const TeacherDashboard = () => {
           onChange={(e) => setDepartment(e.target.value)}
           options={["Engineering", "Arts & Sciences", "Business"]}
           error={errors.department}
+          disabled={qrGenerated} // Disable when QR is active
         />
         <SelectInput
           placeholder="Select Session"
@@ -176,6 +187,7 @@ const TeacherDashboard = () => {
           onChange={(e) => setSession(e.target.value)}
           options={["2023-2027", "2024-2028", "2025-2029"]}
           error={errors.session}
+          disabled={qrGenerated} // Disable when QR is active
         />
         <SelectInput
           placeholder="Select Year"
@@ -183,6 +195,7 @@ const TeacherDashboard = () => {
           onChange={(e) => setYear(e.target.value)}
           options={["1st Year", "2nd Year", "3rd Year", "4th Year"]}
           error={errors.year}
+          disabled={qrGenerated} // Disable when QR is active
         />
         <SelectInput
           placeholder="Select Section"
@@ -190,15 +203,28 @@ const TeacherDashboard = () => {
           onChange={(e) => setSection(e.target.value)}
           options={["Section M1", "Section M2", "Section M3"]}
           error={errors.section}
+          disabled={qrGenerated} // Disable when QR is active
         />
 
         {/* Generate QR Button */}
-        <button
-          onClick={handleGenerateQR}
-          className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg mt-2 hover:bg-blue-700 transition-transform transform hover:scale-105"
-        >
-          Generate QR
-        </button>
+        {!qrGenerated && (
+          <button
+            onClick={handleGenerateQR}
+            className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg mt-2 hover:bg-blue-700 transition-transform transform hover:scale-105"
+          >
+            Generate QR
+          </button>
+        )}
+
+        {/* End QR Button */}
+        {qrGenerated && (
+          <button
+            onClick={handleEndQR}
+            className="w-full bg-red-600 text-white font-bold py-3 px-4 rounded-lg mt-2 hover:bg-red-700 transition-transform transform hover:scale-105"
+          >
+            End QR
+          </button>
+        )}
       </div>
 
       {/* QR Code Section with 5-min timer */}
@@ -224,7 +250,7 @@ const TeacherDashboard = () => {
         </div>
       )}
 
-      {/* NEW: Message when QR actually expires */}
+      {/* QR expired message */}
       {qrExpired && (
         <p className="mt-4 text-red-600 font-bold">
           QR expired! Please generate a new one.
