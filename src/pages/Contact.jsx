@@ -1,53 +1,99 @@
-// About page
+// src/pages/Contact.jsx
+import { useState } from "react";
 
-function About() {
+export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Thank you for reaching out! We will get back to you soon.");
+    setFormData({ name: "", email: "", message: "" });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-16 px-4">
-      {/* Header Section */}
-      <div className="max-w-4xl text-center">
+      {/* Header */}
+      <div className="max-w-3xl text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          TrackIn
+          Contact Us
         </h1>
-        <p className="text-lg md:text-xl text-gray-600">
-          Project Tracker is a powerful tool designed to help teams manage tasks, track progress, and stay organized. Keep your projects on schedule, collaborate seamlessly, and boost productivity.
+        <p className="text-gray-600 text-lg md:text-xl">
+          Have questions about <span className="font-semibold">TrackIn</span>? Reach out to us and we’ll get back to you as soon as possible.
         </p>
       </div>
 
-      {/* Features Section */}
-      <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl">
-        <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h2 className="text-xl font-semibold mb-2 text-indigo-600">Task Management</h2>
-          <p className="text-gray-600">
-            Create, assign, and manage tasks effortlessly with an intuitive interface.
-          </p>
+      {/* Contact Form */}
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-xl bg-white p-8 rounded-2xl shadow-lg space-y-6"
+      >
+        <div>
+          <label className="block text-gray-700 font-semibold mb-2">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your Name"
+            required
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
         </div>
-        <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h2 className="text-xl font-semibold mb-2 text-indigo-600">Progress Tracking</h2>
-          <p className="text-gray-600">
-            Visualize project progress with dashboards and real-time updates.
-          </p>
-        </div>
-        <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <h2 className="text-xl font-semibold mb-2 text-indigo-600">Collaboration</h2>
-          <p className="text-gray-600">
-            Collaborate with your team, share updates, and stay connected seamlessly.
-          </p>
-        </div>
-      </div>
 
-      {/* CTA Section */}
-      <div className="mt-16 text-center">
-        <p className="text-gray-700 mb-4">
-          Ready to boost your productivity and take control of your projects?
-        </p>
-        <button className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300"
-        onClick={() => navigate("/")}
+        <div>
+          <label className="block text-gray-700 font-semibold mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Your Email"
+            required
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <div>
+          <label className="block text-gray-700 font-semibold mb-2">
+            Message
+          </label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Write your message here..."
+            rows="5"
+            required
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 text-white font-semibold py-3 rounded-full hover:bg-indigo-700 transition-colors duration-300"
         >
-          Get Started
+          Send Message
         </button>
+      </form>
+
+      {/* Optional Info Section */}
+      <div className="mt-12 text-center max-w-2xl text-gray-600 space-y-2">
+        <p>Email: <span className="font-semibold">support@trackin.com</span></p>
+        <p>Phone: <span className="font-semibold">+123 456 7890</span></p>
+        <p>Address: <span className="font-semibold">123 Attendance St, City, Country</span></p>
       </div>
     </div>
   );
 }
-
-export default About;
