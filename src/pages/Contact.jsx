@@ -90,9 +90,8 @@ export default function Contact() {
 
       {/* Optional Info Section */}
       <div className="mt-12 text-center max-w-2xl text-gray-600 space-y-2">
-        <p>Email: <span className="font-semibold">support@trackin.com</span></p>
-        <p>Phone: <span className="font-semibold">+123 456 7890</span></p>
-        <p>Address: <span className="font-semibold">123 Attendance St, City, Country</span></p>
+        <p>Email: <span className="font-semibold">reach.mohitjaryal@gmail.com</span></p>
+        <p>Address: <span className="font-semibold">India</span></p>
       </div>
     </div>
   );
