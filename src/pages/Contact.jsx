@@ -21,7 +21,7 @@ export default function Contact() {
           Contact Us
         </h1>
         <p className="text-gray-700 text-lg md:text-xl">
-          Have questions, feedback, or ideas? Fill out the form and we’ll get back to you promptly.
+          Got any doubts or questions? Drop us an email at the address below, and we’ll get back to you.
         </p>
       </div>
 
