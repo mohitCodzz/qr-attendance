@@ -1,6 +1,9 @@
 // About page
+import { useNavigate } from "react-router-dom";
 
 function About() {
+
+    const navigate = useNavigate(); // Calling User Navigate
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-16 px-4">
       {/* Header Section */}
