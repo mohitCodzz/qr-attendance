@@ -14,29 +14,29 @@ export default function Navbar() {
       </h1>
 
       {/* Navbar Text*/}
-  <div className="w-full bg-blue-600 text-white text-center overflow-hidden relative py-2">
-  {/* Marquee */}
-  <div className="marquee flex gap-6 whitespace-nowrap px-4">
-    <span className="marquee-item">🚀 Effortless Attendance</span>
-    <span className="marquee-item">📊 Real-Time Dashboard</span>
-    <span className="marquee-item">🔒 Secure Login</span>
-    <span className="marquee-item">📈 Instant Reports</span>
-    <span className="marquee-item">⚡ Fast Performance</span>
-    <span className="marquee-item">🔗 Easy Integration</span>
-    <span className="marquee-item">🛡️ Data Security</span>
-    {/* Repeat for seamless scroll */}
-    <span className="marquee-item">🚀 Effortless Attendance</span>
-    <span className="marquee-item">📊 Real-Time Dashboard</span>
-    <span className="marquee-item">🔒 Secure Login</span>
-  </div>
+      <div className="w-full bg-blue-600 text-white text-center overflow-hidden relative py-2">
+        {/* Marquee */}
+        <div className="marquee flex gap-6 whitespace-nowrap px-4">
+          <span className="marquee-item">🚀 Effortless Attendance</span>
+          <span className="marquee-item">📊 Real-Time Dashboard</span>
+          <span className="marquee-item">🔒 Secure Login</span>
+          <span className="marquee-item">📈 Instant Reports</span>
+          <span className="marquee-item">⚡ Fast Performance</span>
+          <span className="marquee-item">🔗 Easy Integration</span>
+          <span className="marquee-item">🛡️ Data Security</span>
+          {/* Repeat for seamless scroll */}
+          <span className="marquee-item">🚀 Effortless Attendance</span>
+          <span className="marquee-item">📊 Real-Time Dashboard</span>
+          <span className="marquee-item">🔒 Secure Login</span>
+        </div>
 
-  {/* Gradient fade edges */}
-  <div className="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-blue-600 via-blue-600/50 to-transparent pointer-events-none"></div>
-  <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-blue-600 via-blue-600/50 to-transparent pointer-events-none"></div>
-</div>
+        {/* Gradient fade edges */}
+        <div className="absolute top-0 left-0 w-12 h-full bg-gradient-to-r from-blue-600 via-blue-600/50 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-12 h-full bg-gradient-to-l from-blue-600 via-blue-600/50 to-transparent pointer-events-none"></div>
+      </div>
 
-<style>
-{`
+      <style>
+        {`
   @keyframes marquee-scroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
@@ -68,15 +68,10 @@ export default function Navbar() {
     animation-play-state: paused;
   }
 `}
-</style>
-
-
+      </style>
 
       {/* Links */}
       <div className="space-x-4">
-        <Link to="/" className="hover:underline">
-          Home
-        </Link>
         <Link to="/about" className="hover:underline">
           About
         </Link>
