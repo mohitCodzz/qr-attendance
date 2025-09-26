@@ -6,7 +6,7 @@ function About() {
       {/* Header Section */}
       <div className="max-w-4xl text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-          About Project Tracker
+          TrackIn
         </h1>
         <p className="text-lg md:text-xl text-gray-600">
           Project Tracker is a powerful tool designed to help teams manage tasks, track progress, and stay organized. Keep your projects on schedule, collaborate seamlessly, and boost productivity.
