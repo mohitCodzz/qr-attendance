@@ -40,7 +40,9 @@ function About() {
         <p className="text-gray-700 mb-4">
           Ready to boost your productivity and take control of your projects?
         </p>
-        <button className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300">
+        <button className="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors duration-300"
+        onClick={() => navigate("/")}
+        >
           Get Started
         </button>
       </div>
